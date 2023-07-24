@@ -1,0 +1,84 @@
+---
+title: "tidyspecPaper: a gentle framework to handle with spectroscopy data using tidy data philosophy"
+author:
+  - name: Marcel Rodrigues Ferreira
+    orcid: 0000-0002-3445-0945
+    email: marcel.ferreira@unesp.br
+    affiliations:
+      - name: Departament of Chemistry and Biochemistry, São Paulo State University (UNESP), Institute of Biosciences, Campus Botucatu
+        city: Botucatu
+        state: SP
+        country: Brazil
+        postal-code: 18618-970
+      - name: Molecular Genetics and Bioinformatics Laboratory, Experimental Research Unit (Unipex), School of Medicine, São Paulo State University (UNESP)
+        city: Botucatu
+        state: SP
+        country: Brazil
+        postal-code: 18618-687
+  - name: Julia Ferreia Moraes
+    affiliations:
+      - name: Departament of Chemistry and Biochemistry, São Paulo State University (UNESP), Institute of Biosciences, Campus Botucatu
+        city: Botucatu
+        state: SP
+        country: Brazil
+        postal-code: 18618-970
+  - name: Luisa Sutter
+    affiliations:
+      - name: Departament of Chemistry and Biochemistry, São Paulo State University (UNESP), Institute of Biosciences, Campus Botucatu
+        city: Botucatu
+        state: SP
+        country: Brazil
+        postal-code: 18618-970
+  - name: Willian Fernando Zambuzzi
+    orcid: 0000-0002-4149-5965
+    email: w.zambuzzi@unesp.br
+    affiliations:
+      - name: Departament of Chemistry and Biochemistry, São Paulo State University (UNESP), Institute of Biosciences, Campus Botucatu
+        adress: Rua Profª. Drª. Irina Delanova Gemtchujnicov, s/n
+        city: Botucatu
+        state: SP
+        country: Brazil
+        postal-code: 18618-693
+    corresponding: true   
+
+filters:
+   - authors-block
+       
+format: 
+  html: default
+  docx: default
+  pdf: default
+---
+
+```         
+<!-- convidar o grupo da USP para trabalhar nisso -->
+```
+
+## Abstract
+
+## Introduction
+
+### Spectroscopy
+
+#### R language
+
+#### Tidydata and tidyverse
+
+## Data sets
+
+## Overview of tidyspec package
+
+## Case studies
+
+#### UV-VIS data
+
+#### FTIR
+
+#### Raman
+
+## Conclusion and perspectives
+
+## Acknowledgments
+
+## References
+
