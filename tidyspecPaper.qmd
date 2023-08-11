@@ -48,6 +48,7 @@ format:
   html: default
   docx: default
   pdf: default
+bibliography: references.bib
 ---
 
 ```         
@@ -60,7 +61,13 @@ format:
 
 #### Spectroscopy
 
+Spectroscopy, the study of interactions between light and matter, has been a cornerstone of scientific exploration for centuries, enabling us to peer into the fundamental properties and intricate structures of materials across various domains. From the early days of visible light observations to the cutting-edge techniques of modern spectroscopy, researchers have continually pushed the boundaries of our understanding, unraveling the mysteries of atoms, molecules, and complex systems. This paper presents a comprehensive exploration of recent advancements in spectroscopic analyses, delving into the multifaceted applications, innovative methodologies, and emergent technologies that have revolutionized our ability to probe, characterize, and manipulate matter at its most fundamental levels. By harnessing the power of spectroscopy, scientists are embarking on a journey to unlock hidden dimensions of matter, uncovering new insights that have far-reaching implications in fields ranging from materials science and chemistry to astronomy and biology. This paper not only reviews key developments in spectroscopic techniques but also highlights their profound impact on our comprehension of the physical world, underlining the ever-expanding role of spectroscopy as an indispensable tool for scientific discovery and technological innovation.
+
 #### R language
+
+The R programming language has emerged as a versatile and powerful tool in the realm of spectroscopy, offering researchers an extensive suite of specialized packages designed to facilitate data analysis, visualization, and interpretation. Leveraging R's rich statistical capabilities and its seamless integration with a diverse range of data formats, spectroscopists can efficiently process and manipulate complex spectral datasets. Notably, packages such as `{hyperSpec}` [^1][@hyperSpec] and `{ChemoSpec}` [@ChemoSpec] provide dedicated functions for handling hyperspectral data, allowing for preprocessing, spectral alignment, and exploratory data analysis. 'SpecMine' and 'SpecHelpers' further extend R's utility by enabling advanced spectral processing, peak detection, and quantification tasks. Visualization of spectroscopic data is greatly enhanced by packages like 'ggplot2' and 'plotly', enabling researchers to create insightful and interactive graphical representations. The extensibility of R also encourages the development of customized algorithms and methods tailored to specific spectroscopic challenges. As the field of spectroscopy continues to expand its horizons, R remains an invaluable asset, empowering scientists to unravel the intricacies of spectral information with precision and depth.
+
+[^1]: In this paper, the R packages names will be formated as {package}, a format widely used by the R community.
 
 #### Tidydata and tidyverse
 
@@ -75,6 +82,8 @@ format:
 #### FTIR
 
 #### Raman
+
+{hyperSpec} chodro data.
 
 ## Conclusion and perspectives
 

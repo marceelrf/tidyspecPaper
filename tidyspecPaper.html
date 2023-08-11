@@ -21,7 +21,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="tidyspecPaper_files/libs/clipboard/clipboard.min.js"></script>
@@ -112,14 +131,16 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="spectroscopy" class="level3">
-<h3 class="anchored" data-anchor-id="spectroscopy">Spectroscopy</h3>
+<section id="spectroscopy" class="level4">
+<h4 class="anchored" data-anchor-id="spectroscopy">Spectroscopy</h4>
+<p>Spectroscopy, the study of interactions between light and matter, has been a cornerstone of scientific exploration for centuries, enabling us to peer into the fundamental properties and intricate structures of materials across various domains. From the early days of visible light observations to the cutting-edge techniques of modern spectroscopy, researchers have continually pushed the boundaries of our understanding, unraveling the mysteries of atoms, molecules, and complex systems. This paper presents a comprehensive exploration of recent advancements in spectroscopic analyses, delving into the multifaceted applications, innovative methodologies, and emergent technologies that have revolutionized our ability to probe, characterize, and manipulate matter at its most fundamental levels. By harnessing the power of spectroscopy, scientists are embarking on a journey to unlock hidden dimensions of matter, uncovering new insights that have far-reaching implications in fields ranging from materials science and chemistry to astronomy and biology. This paper not only reviews key developments in spectroscopic techniques but also highlights their profound impact on our comprehension of the physical world, underlining the ever-expanding role of spectroscopy as an indispensable tool for scientific discovery and technological innovation.</p>
+</section>
 <section id="r-language" class="level4">
 <h4 class="anchored" data-anchor-id="r-language">R language</h4>
+<p>The R programming language has emerged as a versatile and powerful tool in the realm of spectroscopy, offering researchers an extensive suite of specialized packages designed to facilitate data analysis, visualization, and interpretation. Leveraging R’s rich statistical capabilities and its seamless integration with a diverse range of data formats, spectroscopists can efficiently process and manipulate complex spectral datasets. Notably, packages such as <code>{hyperSpec}</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a><span class="citation" data-cites="hyperSpec">(<a href="#ref-hyperSpec" role="doc-biblioref">Beleites and Sergo</a>)</span> and <code>{ChemoSpec}</code> <span class="citation" data-cites="ChemoSpec">(<a href="#ref-ChemoSpec" role="doc-biblioref">Hanson 2023</a>)</span> provide dedicated functions for handling hyperspectral data, allowing for preprocessing, spectral alignment, and exploratory data analysis. ‘SpecMine’ and ‘SpecHelpers’ further extend R’s utility by enabling advanced spectral processing, peak detection, and quantification tasks. Visualization of spectroscopic data is greatly enhanced by packages like ‘ggplot2’ and ‘plotly’, enabling researchers to create insightful and interactive graphical representations. The extensibility of R also encourages the development of customized algorithms and methods tailored to specific spectroscopic challenges. As the field of spectroscopy continues to expand its horizons, R remains an invaluable asset, empowering scientists to unravel the intricacies of spectral information with precision and depth.</p>
 </section>
 <section id="tidydata-and-tidyverse" class="level4">
 <h4 class="anchored" data-anchor-id="tidydata-and-tidyverse">Tidydata and tidyverse</h4>
-</section>
 </section>
 </section>
 <section id="data-sets" class="level2">
@@ -146,11 +167,25 @@ ul.task-list li input[type="checkbox"] {
 <section id="acknowledgments" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="references" class="level2 unnumbered">
+
+
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-hyperSpec" class="csl-entry" role="listitem">
+Beleites, Claudia, and Valter Sergo. <span>“hyperSpec: A Package to Handle Hyperspectral Data Sets in r.”</span> <a href="https://github.com/r-hyperspec/hyperSpec">https://github.com/r-hyperspec/hyperSpec</a>.
+</div>
+<div id="ref-ChemoSpec" class="csl-entry" role="listitem">
+Hanson, Bryan A. 2023. <span>“ChemoSpec: Exploratory Chemometrics for Spectroscopy.”</span> <a href="https://CRAN.R-project.org/package=ChemoSpec">https://CRAN.R-project.org/package=ChemoSpec</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>In this paper, the R packages names will be formated as {package}, a format widely used by the R community.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
