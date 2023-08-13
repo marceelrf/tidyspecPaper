@@ -8,7 +8,7 @@
 
 <meta name="author" content="Marcel Rodrigues Ferreira1,2, Julia Ferreia Moraes1, Luisa Sutter1, and Willian Fernando Zambuzzi3,✉">
 
-<title>tidyspecPaper: a gentle framework to handle with spectroscopy data using tidy data philosophy</title>
+<title>tidyspec: a gentle framework to handle with spectroscopy data using tidy data philosophy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -54,6 +88,8 @@ div.csl-indent {
 <link href="tidyspecPaper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="tidyspecPaper_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -66,7 +102,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">tidyspecPaper: a gentle framework to handle with spectroscopy data using tidy data philosophy</h1>
+<h1 class="title">tidyspec: a gentle framework to handle with spectroscopy data using tidy data philosophy</h1>
 </div>
 
 
@@ -137,7 +173,7 @@ div.csl-indent {
 </section>
 <section id="r-language" class="level4">
 <h4 class="anchored" data-anchor-id="r-language">R language</h4>
-<p>The R programming language has emerged as a versatile and powerful tool in the realm of spectroscopy, offering researchers an extensive suite of specialized packages designed to facilitate data analysis, visualization, and interpretation. Leveraging R’s rich statistical capabilities and its seamless integration with a diverse range of data formats, spectroscopists can efficiently process and manipulate complex spectral datasets. Notably, packages such as <code>{hyperSpec}</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a><span class="citation" data-cites="hyperSpec">(<a href="#ref-hyperSpec" role="doc-biblioref">Beleites and Sergo</a>)</span> and <code>{ChemoSpec}</code> <span class="citation" data-cites="ChemoSpec">(<a href="#ref-ChemoSpec" role="doc-biblioref">Hanson 2023</a>)</span> provide dedicated functions for handling hyperspectral data, allowing for preprocessing, spectral alignment, and exploratory data analysis. ‘SpecMine’ and ‘SpecHelpers’ further extend R’s utility by enabling advanced spectral processing, peak detection, and quantification tasks. Visualization of spectroscopic data is greatly enhanced by packages like ‘ggplot2’ and ‘plotly’, enabling researchers to create insightful and interactive graphical representations. The extensibility of R also encourages the development of customized algorithms and methods tailored to specific spectroscopic challenges. As the field of spectroscopy continues to expand its horizons, R remains an invaluable asset, empowering scientists to unravel the intricacies of spectral information with precision and depth.</p>
+<p>The R programming language has emerged as a versatile and powerful tool in the realm of spectroscopy, offering researchers an extensive suite of specialized packages designed to facilitate data analysis, visualization, and interpretation. Leveraging R’s rich statistical capabilities and its seamless integration with a diverse range of data formats, spectroscopists can efficiently process and manipulate complex spectral datasets. Notably, packages such as <code>{hyperSpec}</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a><span class="citation" data-cites="hyperSpec">(<a href="#ref-hyperSpec" role="doc-biblioref">Beleites and Sergo</a>)</span> and <code>{ChemoSpec}</code> <span class="citation" data-cites="ChemoSpec">(<a href="#ref-ChemoSpec" role="doc-biblioref">Hanson 2023</a>)</span> provide dedicated functions for handling hyperspectral data, allowing for preprocessing, spectral alignment, and exploratory data analysis. ‘SpecMine’ and ‘SpecHelpers’ further extend R’s utility by enabling advanced spectral processing, peak detection, and quantification tasks. Visualization of spectroscopic data is greatly enhanced by packages like <code>{ggplot2}</code> <span class="citation" data-cites="ggplot2">(<a href="#ref-ggplot2" role="doc-biblioref">Wickham 2016</a>)</span> and <code>{plotly}</code> <span class="citation" data-cites="plotly">(<a href="#ref-plotly" role="doc-biblioref">Sievert 2020</a>)</span>, enabling researchers to create insightful and interactive graphical representations. The extensibility of R also encourages the development of customized algorithms and methods tailored to specific spectroscopic challenges. As the field of spectroscopy continues to expand its horizons, R remains an invaluable asset, empowering scientists to unravel the intricacies of spectral information with precision and depth.</p>
 </section>
 <section id="tidydata-and-tidyverse" class="level4">
 <h4 class="anchored" data-anchor-id="tidydata-and-tidyverse">Tidydata and tidyverse</h4>
@@ -147,18 +183,42 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="data-sets">Data sets</h2>
 </section>
 <section id="overview-of-tidyspec-package" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-tidyspec-package">Overview of tidyspec package</h2>
+<h2 class="anchored" data-anchor-id="overview-of-tidyspec-package">Overview of <code>tidyspec</code> package</h2>
+<p>The&nbsp;<code>tidyspec</code>&nbsp;package was design to enable the data analysis of spectroscopy data (as IR, Raman, NMR) with the tidydata format. Similar to packages like <code>{stringr}</code> <span class="citation" data-cites="stringr">(<a href="#ref-stringr" role="doc-biblioref">Wickham 2022</a>)</span> and <code>{forcats}</code> <span class="citation" data-cites="forcats">(<a href="#ref-forcats" role="doc-biblioref">Wickham 2023</a>)</span>, the tidyspec package contains a naming pattern at the beginning of its function name, in this case <code>spec_</code>. The functions were designed to solve 6 different problems in spectroscopy:</p>
+<ul>
+<li><p><strong>Transformation</strong>: Convert data from absorbance to transmittance (<code>spec_abs2trans</code>) &amp; from transmittance to absorbance (<code>spec_trans2abs</code>).</p>
+<p><span class="math display">\[
+A = 2 - \log_{10}{T(\%)}
+\]</span></p></li>
+<li><p><strong>Normalization</strong>: Normalize the data to range 0-1 (<code>spec_norm_01</code>), normalize between a custom range (<code>spec_norm_minmax</code>), or normalize to have a standard deviation of one (<code>spec_norm_var</code>).</p></li>
+<li><p><strong>Baseline correction</strong>: Correct the baseline using the the <em>rolling ball</em> algorithm (<code>spec_blc_rollingBall</code>). The function <code>spec_bl</code> return the baseline vectors (<code>spec_bl_rollingBall</code>).</p></li>
+<li><p><strong>Smooth correction</strong>: Smooth the data using the average window (<code>spec_smooth_avg</code>) or using the Savitzky-Golay algorithm (<code>spec_smooth_sga</code>).</p></li>
+<li><p><strong>Derivative</strong>: Create differential data from the spectra (<code>spec_diff</code>).</p></li>
+<li><p><strong>Preview</strong>: Preview your data while applying changes statically (<code>spec_smartplot</code>) or interactively (<code>spec_smartplotly</code>).</p></li>
+</ul>
 </section>
 <section id="case-studies" class="level2">
 <h2 class="anchored" data-anchor-id="case-studies">Case studies</h2>
 <section id="uv-vis-data" class="level4">
 <h4 class="anchored" data-anchor-id="uv-vis-data">UV-VIS data</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyspec)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modeldatatoo)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>UV <span class="ot">&lt;-</span> <span class="fu">data_chimiometrie_2019</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="ftir" class="level4">
 <h4 class="anchored" data-anchor-id="ftir">FTIR</h4>
 </section>
 <section id="raman" class="level4">
 <h4 class="anchored" data-anchor-id="raman">Raman</h4>
+<p>{hyperSpec} chodro data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hyperSpec)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Raman <span class="ot">&lt;-</span> chondro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="conclusion-and-perspectives" class="level2">
@@ -179,6 +239,18 @@ Beleites, Claudia, and Valter Sergo. <span>“hyperSpec: A Package to Handle Hyp
 </div>
 <div id="ref-ChemoSpec" class="csl-entry" role="listitem">
 Hanson, Bryan A. 2023. <span>“ChemoSpec: Exploratory Chemometrics for Spectroscopy.”</span> <a href="https://CRAN.R-project.org/package=ChemoSpec">https://CRAN.R-project.org/package=ChemoSpec</a>.
+</div>
+<div id="ref-plotly" class="csl-entry" role="listitem">
+Sievert, Carson. 2020. <span>“Interactive Web-Based Data Visualization with r, Plotly, and Shiny.”</span> <a href="https://plotly-r.com">https://plotly-r.com</a>.
+</div>
+<div id="ref-ggplot2" class="csl-entry" role="listitem">
+Wickham, Hadley. 2016. <span>“Ggplot2: Elegant Graphics for Data Analysis.”</span> <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-stringr" class="csl-entry" role="listitem">
+———. 2022. <span>“Stringr: Simple, Consistent Wrappers for Common String Operations.”</span> <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.
+</div>
+<div id="ref-forcats" class="csl-entry" role="listitem">
+———. 2023. <span>“Forcats: Tools for Working with Categorical Variables (Factors).”</span> <a href="https://CRAN.R-project.org/package=forcats">https://CRAN.R-project.org/package=forcats</a>.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
