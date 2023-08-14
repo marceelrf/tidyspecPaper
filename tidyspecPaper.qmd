@@ -63,6 +63,22 @@ bibliography: references.bib
 
 Spectroscopy, the study of interactions between light and matter, has been a cornerstone of scientific exploration for centuries, enabling us to peer into the fundamental properties and intricate structures of materials across various domains. From the early days of visible light observations to the cutting-edge techniques of modern spectroscopy, researchers have continually pushed the boundaries of our understanding, unraveling the mysteries of atoms, molecules, and complex systems. This paper presents a comprehensive exploration of recent advancements in spectroscopic analyses, delving into the multifaceted applications, innovative methodologies, and emergent technologies that have revolutionized our ability to probe, characterize, and manipulate matter at its most fundamental levels. By harnessing the power of spectroscopy, scientists are embarking on a journey to unlock hidden dimensions of matter, uncovering new insights that have far-reaching implications in fields ranging from materials science and chemistry to astronomy and biology. This paper not only reviews key developments in spectroscopic techniques but also highlights their profound impact on our comprehension of the physical world, underlining the ever-expanding role of spectroscopy as an indispensable tool for scientific discovery and technological innovation.
 
+$$
+c = \lambda \nu
+$$
+
+$$
+E = h \nu
+$$
+
+$$
+E=\frac{hc}{\lambda}
+$$
+
+$$
+\overline{\nu} = \frac{1}{\lambda}
+$$
+
 #### R language
 
 The R programming language has emerged as a versatile and powerful tool in the realm of spectroscopy, offering researchers an extensive suite of specialized packages designed to facilitate data analysis, visualization, and interpretation. Leveraging R's rich statistical capabilities and its seamless integration with a diverse range of data formats, spectroscopists can efficiently process and manipulate complex spectral datasets. Notably, packages such as `{hyperSpec}` [^1][@hyperSpec] and `{ChemoSpec}` [@ChemoSpec] provide dedicated functions for handling hyperspectral data, allowing for preprocessing, spectral alignment, and exploratory data analysis. 'SpecMine' and 'SpecHelpers' further extend R's utility by enabling advanced spectral processing, peak detection, and quantification tasks. Visualization of spectroscopic data is greatly enhanced by packages like `{ggplot2}` [@ggplot2] and `{plotly}` [@plotly], enabling researchers to create insightful and interactive graphical representations. The extensibility of R also encourages the development of customized algorithms and methods tailored to specific spectroscopic challenges. As the field of spectroscopy continues to expand its horizons, R remains an invaluable asset, empowering scientists to unravel the intricacies of spectral information with precision and depth.
@@ -75,19 +91,25 @@ The R programming language has emerged as a versatile and powerful tool in the r
 
 ## Overview of `tidyspec` package
 
-The `tidyspec` package was design to enable the data analysis of spectroscopy data (as IR, Raman, NMR) with the tidydata format. Similar to packages like `{stringr}` [@stringr] and `{forcats}` [@forcats], the tidyspec package contains a naming pattern at the beginning of its function name, in this case `spec_`. The functions were designed to solve 6 different problems in spectroscopy:
+The `tidyspec` package was design to enable the data analysis of spectroscopy data (as IR, Raman, NMR) with the tidydata format. Similar to packages like `{stringr}` [@stringr] and `{forcats}` [@forcats], the tidyspec package contains a naming pattern at the beginning of its function name, in this case `spec_`. Since spectra are values in function of *wavelength*, *wavenumber*, *frequency* or *energy* values, a `wn_col` argument has been defined in order to map these values to the input data. ESCREVER SOBRE OS PACOTES QUE COMPOE AS FUNÇÕES
 
--   **Transformation**: Convert data from absorbance to transmittance (`spec_abs2trans`) & from transmittance to absorbance (`spec_trans2abs`).
+The functions were designed to solve 6 different problems in spectroscopy:
+
+-   **Transformation**: Convert data from absorbance to transmittance (`spec_abs2trans`) & from transmittance to absorbance (`spec_trans2abs`). The conversion is based on the following equation, where A means absorbance and T (values from 0 to 1) or T(%) (values from 0 to 100) for transmittance.
 
     $$
     A = 2 - \log_{10}{T(\%)}
+    $$ or
+
+    $$
+    A=-log_{10}{T}
     $$
 
 -   **Normalization**: Normalize the data to range 0-1 (`spec_norm_01`), normalize between a custom range (`spec_norm_minmax`), or normalize to have a standard deviation of one (`spec_norm_var`).
 
--   **Baseline correction**: Correct the baseline using the the *rolling ball* algorithm (`spec_blc_rollingBall`). The function `spec_bl` return the baseline vectors (`spec_bl_rollingBall`).
+-   **Baseline correction**: Correct the baseline using the the *rolling ball* [@kneen1996] algorithm (`spec_blc_rollingBall`). The function `spec_bl` return the baseline vectors (`spec_bl_rollingBall`).
 
--   **Smooth correction**: Smooth the data using the average window (`spec_smooth_avg`) or using the Savitzky-Golay algorithm (`spec_smooth_sga`).
+-   **Smooth correction**: Smooth the data using the average window (`spec_smooth_avg`) or using the *Savitzky-Golay* algorithm [@savitzky1964] (`spec_smooth_sga`).
 
 -   **Derivative**: Create differential data from the spectra (`spec_diff`).
 
@@ -101,6 +123,8 @@ The `tidyspec` package was design to enable the data analysis of spectroscopy 
 library(tidyspec)
 library(tidyverse)
 library(modeldatatoo)
+library(viridis)
+library(baseline)
 
 UV <- data_chimiometrie_2019()
 ```
@@ -109,17 +133,42 @@ UV <- data_chimiometrie_2019()
 
 #### Raman
 
-{hyperSpec} chodro data.
+`{hyperSpec}` package `chodro` data is a special S4 R object named *`hyperSpec`* class which contains 850 Raman spectra with x (`chondro$x`) and y (`chondro$y`) spatial coordinates (from a grid conformation of 25 x 35), in addition the `chondor$spc` has 300 data points measured from 600 cm^-1^ to 1800 cm^-1^ for each spectra. For the purpose of this work the `chondor$spc` data wasconverted into a tidy data format with the first column the wavenumbers and the following columns each spectra. This data was called `Raman_tidy`.
 
 ```{r,message=FALSE,warning=FALSE}
 library(hyperSpec)
 Raman <- chondro
+
+dim(Raman$spc)
+```
+
+```{r,warning=FALSE}
+Raman_tidy <- tibble(Wn = as.numeric(colnames(Raman$spc))) %>% 
+  bind_cols(as_tibble(t(Raman$spc),.names_repair = "minimal"))
+
+print(Raman_tidy[1:10,1:8])
+```
+
+```{r}
+Raman_tidy %>% 
+  select(1:9) %>% 
+  spec_smartplot()
+```
+
+```{r}
+Raman_tidy %>% 
+  select(1:9) %>% 
+  spec_blc_rollingBall(Wn_min = 1508,
+                       Wn_max = 1718,
+                       wm = 15,
+                       ws = 15) %>% 
+  spec_smartplot(geom = "point")
 ```
 
 ## Conclusion and perspectives
 
 ## Acknowledgments
 
-The authors thanks [FAPESP](https://fapesp.br/) (n 2018/05731-7, 2021/14271-2) for the funding.
+The authors thanks [FAPESP](https://fapesp.br/) (n 2018/05731-7, 2021/14271-2) for the funding and to MSc. Viviane Oliveira for the valuable suggestions.
 
 ## References
