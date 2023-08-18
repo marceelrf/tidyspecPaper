@@ -189,14 +189,20 @@ E=\frac{hc}{\lambda}
 </section>
 <section id="tidydata-and-tidyverse" class="level4">
 <h4 class="anchored" data-anchor-id="tidydata-and-tidyverse">Tidydata and tidyverse</h4>
+<p>Despite the good functioning of the base version, the creation of <code>tidyverse</code> in 2016 revolutionized the R language by offering a new programming ecosystem focused on the entire data analysis cycle <span class="citation" data-cites="wickham2019">(<a href="#ref-wickham2019" role="doc-biblioref">Wickham et al. 2019</a>)</span>. Currently, <code>tidyverse</code> consists of a core set of 9 packages, <code>ggplot2</code> <span class="citation" data-cites="ggplot2">(<a href="#ref-ggplot2" role="doc-biblioref">Wickham 2016</a>)</span>, <code>readr</code> <span class="citation" data-cites="readr">(<a href="#ref-readr" role="doc-biblioref">Wickham, Hester, and Bryan 2023</a>)</span>, <code>tibble</code> <span class="citation" data-cites="tibble">(<a href="#ref-tibble" role="doc-biblioref">Müller and Wickham 2022</a>)</span>, <code>tidyr</code> <span class="citation" data-cites="tidyr">(<a href="#ref-tidyr" role="doc-biblioref">Wickham, Vaughan, and Girlich 2023</a>)</span>, <code>purrr</code> <span class="citation" data-cites="purrr">(<a href="#ref-purrr" role="doc-biblioref">Wickham and Henry 2023</a>)</span>, <code>dplyr</code> <span class="citation" data-cites="dplyr">(<a href="#ref-dplyr" role="doc-biblioref">Wickham et al. 2023</a>)</span>, <code>stringr</code> <span class="citation" data-cites="stringr">(<a href="#ref-stringr" role="doc-biblioref">Wickham 2022</a>)</span>, <code>forcats</code> <span class="citation" data-cites="forcats">(<a href="#ref-forcats" role="doc-biblioref">Wickham 2023</a>)</span> and <code>lubridate</code> <span class="citation" data-cites="lubridate">(<a href="#ref-lubridate" role="doc-biblioref">Grolemund and Wickham 2011</a>)</span>, covering data <em>import</em>, <em>transformation</em>, <em>visualization</em>, <em>modeling</em> and <em>communication</em>. Tidyverse packages was built under a same philosophy, named tidy data [REF]. A data set must follow three rules to be considered a tidy data: <strong>(1)</strong> Each <em>column</em> is a distinguish variable, <strong>(2)</strong> each <em>row</em> is a different observation, and <strong>(3)</strong> each <em>cell</em> is a single value [REF].</p>
+<p>With the growing expansion of the <code>tidyverse</code> and the interest in machine learning tools, in 2019 a set of packages inspired by the tidy data philosophy called <code>tidymodels</code> was released <span class="citation" data-cites="giorgi2022">(<a href="#ref-giorgi2022" role="doc-biblioref">Giorgi, Ceraolo, and Mercatelli 2022</a>)</span>[REF].</p>
 </section>
 </section>
 <section id="data-sets" class="level2">
 <h2 class="anchored" data-anchor-id="data-sets">Data sets</h2>
+<p>UV:</p>
+<p>FTIR:</p>
+<p>Raman: <code>{hyperSpec}</code> package <code>chodro</code> data is a special S4 R object named <em><code>hyperSpec</code></em> class which contains 850 Raman spectra with x (<code>chondro$x</code>) and y (<code>chondro$y</code>) spatial coordinates (from a grid conformation of 25 x 35), in addition the <code>chondor$spc</code> has 300 data points measured from 600 cm<sup>-1</sup> to 1800 cm<sup>-1</sup> for each spectra.</p>
 </section>
 <section id="overview-of-tidyspec-package" class="level2">
 <h2 class="anchored" data-anchor-id="overview-of-tidyspec-package">Overview of <code>tidyspec</code> package</h2>
 <p>The&nbsp;<code>tidyspec</code>&nbsp;package was design to enable the data analysis of spectroscopy data (as IR, Raman, NMR) with the tidydata format. Similar to packages like <code>{stringr}</code> <span class="citation" data-cites="stringr">(<a href="#ref-stringr" role="doc-biblioref">Wickham 2022</a>)</span> and <code>{forcats}</code> <span class="citation" data-cites="forcats">(<a href="#ref-forcats" role="doc-biblioref">Wickham 2023</a>)</span>, the tidyspec package contains a naming pattern at the beginning of its function name, in this case <code>spec_</code>. Since spectra are values in function of <em>wavelength</em>, <em>wavenumber</em>, <em>frequency</em> or <em>energy</em> values, a <code>wn_col</code> argument has been defined in order to map these values to the input data. ESCREVER SOBRE OS PACOTES QUE COMPOE AS FUNÇÕES</p>
+<p>The functions in the <code>tidyspec</code> package were created by wrapping functions of <code>tidyverse</code> packages in order to simplify the code syntax. Package performance is guaranteed by using the <code>recipes</code> package <span class="citation" data-cites="recipes">(<a href="#ref-recipes" role="doc-biblioref">Kuhn and Wickham 2022</a>)</span>, which provides structure for data processing.</p>
 <p>The functions were designed to solve 6 different problems in spectroscopy:</p>
 <ul>
 <li><p><strong>Transformation</strong>: Convert data from absorbance to transmittance (<code>spec_abs2trans</code>) &amp; from transmittance to absorbance (<code>spec_trans2abs</code>). The conversion is based on the following equation, where A means absorbance and T (values from 0 to 1) or T(%) (values from 0 to 100) for transmittance.</p>
@@ -224,7 +230,7 @@ A=-log_{10}{T}
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baseline)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>UV <span class="ot">&lt;-</span> <span class="fu">data_chimiometrie_2019</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#UV &lt;- data_chimiometrie_2019()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ftir" class="level4">
@@ -232,7 +238,7 @@ A=-log_{10}{T}
 </section>
 <section id="raman" class="level4">
 <h4 class="anchored" data-anchor-id="raman">Raman</h4>
-<p><code>{hyperSpec}</code> package <code>chodro</code> data is a special S4 R object named <em><code>hyperSpec</code></em> class which contains 850 Raman spectra with x (<code>chondro$x</code>) and y (<code>chondro$y</code>) spatial coordinates (from a grid conformation of 25 x 35), in addition the <code>chondor$spc</code> has 300 data points measured from 600 cm<sup>-1</sup> to 1800 cm<sup>-1</sup> for each spectra. For the purpose of this work the <code>chondor$spc</code>data wasconverted into a tidy data format with the first column the wavenumbers and the following columns each spectra. This data was called <code>Raman_tidy</code>.</p>
+<p>For the purpose of this work the <code>chondor$spc</code> data was converted into a tidy data format with the first column the wavenumbers and the following columns each spectra. This data was called <code>Raman_tidy</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hyperSpec)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Raman <span class="ot">&lt;-</span> chondro</span>
@@ -302,11 +308,23 @@ A=-log_{10}{T}
 <div id="ref-hyperSpec" class="csl-entry" role="listitem">
 Beleites, Claudia, and Valter Sergo. <span>“hyperSpec: A Package to Handle Hyperspectral Data Sets in r.”</span> <a href="https://github.com/r-hyperspec/hyperSpec">https://github.com/r-hyperspec/hyperSpec</a>.
 </div>
+<div id="ref-giorgi2022" class="csl-entry" role="listitem">
+Giorgi, Federico M., Carmine Ceraolo, and Daniele Mercatelli. 2022. <span>“The R Language: An Engine for Bioinformatics and Data Science.”</span> <em>Life</em> 12 (5): 648. <a href="https://doi.org/10.3390/life12050648">https://doi.org/10.3390/life12050648</a>.
+</div>
+<div id="ref-lubridate" class="csl-entry" role="listitem">
+Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span></span>Lubridate<span></span>”</span> 40. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
+</div>
 <div id="ref-ChemoSpec" class="csl-entry" role="listitem">
 Hanson, Bryan A. 2023. <span>“ChemoSpec: Exploratory Chemometrics for Spectroscopy.”</span> <a href="https://CRAN.R-project.org/package=ChemoSpec">https://CRAN.R-project.org/package=ChemoSpec</a>.
 </div>
 <div id="ref-kneen1996" class="csl-entry" role="listitem">
 Kneen, M. A., and H. J. Annegarn. 1996. <span>“Algorithm for Fitting XRF, SEM and PIXE X-Ray Spectra Backgrounds.”</span> <em>Nuclear Instruments and Methods in Physics Research Section B: Beam Interactions with Materials and Atoms</em> 109-110 (April): 209–13. <a href="https://doi.org/10.1016/0168-583x(95)00908-6">https://doi.org/10.1016/0168-583x(95)00908-6</a>.
+</div>
+<div id="ref-recipes" class="csl-entry" role="listitem">
+Kuhn, Max, and Hadley Wickham. 2022. <span>“Recipes: Preprocessing and Feature Engineering Steps for Modeling.”</span> <a href="https://CRAN.R-project.org/package=recipes">https://CRAN.R-project.org/package=recipes</a>.
+</div>
+<div id="ref-tibble" class="csl-entry" role="listitem">
+Müller, Kirill, and Hadley Wickham. 2022. <span>“Tibble: Simple Data Frames.”</span> <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.
 </div>
 <div id="ref-savitzky1964" class="csl-entry" role="listitem">
 Savitzky, Abraham., and M. J. E. Golay. 1964. <span>“Smoothing and Differentiation of Data by Simplified Least Squares Procedures.”</span> <em>Analytical Chemistry</em> 36 (8): 1627–39. <a href="https://doi.org/10.1021/ac60214a047">https://doi.org/10.1021/ac60214a047</a>.
@@ -322,6 +340,21 @@ Wickham, Hadley. 2016. <span>“Ggplot2: Elegant Graphics for Data Analysis.”<
 </div>
 <div id="ref-forcats" class="csl-entry" role="listitem">
 ———. 2023. <span>“Forcats: Tools for Working with Categorical Variables (Factors).”</span> <a href="https://CRAN.R-project.org/package=forcats">https://CRAN.R-project.org/package=forcats</a>.
+</div>
+<div id="ref-wickham2019" class="csl-entry" role="listitem">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the Tidyverse.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="listitem">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <span>“Dplyr: A Grammar of Data Manipulation.”</span> <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-purrr" class="csl-entry" role="listitem">
+Wickham, Hadley, and Lionel Henry. 2023. <span>“Purrr: Functional Programming Tools.”</span> <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.
+</div>
+<div id="ref-readr" class="csl-entry" role="listitem">
+Wickham, Hadley, Jim Hester, and Jennifer Bryan. 2023. <span>“Readr: Read Rectangular Text Data.”</span> <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.
+</div>
+<div id="ref-tidyr" class="csl-entry" role="listitem">
+Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. <span>“Tidyr: Tidy Messy Data.”</span> <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 

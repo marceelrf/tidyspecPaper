@@ -11,3 +11,8 @@ UV %>%
                names_to = "type",values_to = "val") %>%
   ggplot(aes(x = Wavelength, y = val, col = type)) +
   geom_line()
+
+
+quarto::quarto_render(input = "tidyspecPaper.qmd",
+                      output_format = "all")
+#Expansion and evolution of the R programming language

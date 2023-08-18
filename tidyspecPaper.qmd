@@ -87,11 +87,23 @@ The R programming language has emerged as a versatile and powerful tool in the r
 
 #### Tidydata and tidyverse
 
+Despite the good functioning of the base version, the creation of `tidyverse` in 2016 revolutionized the R language by offering a new programming ecosystem focused on the entire data analysis cycle [@wickham2019]. Currently, `tidyverse` consists of a core set of 9 packages, `ggplot2` [@ggplot2], `readr` [@readr], `tibble` [@tibble], `tidyr` [@tidyr], `purrr` [@purrr], `dplyr` [@dplyr], `stringr` [@stringr], `forcats` [@forcats] and `lubridate` [@lubridate], covering data *import*, *transformation*, *visualization*, *modeling* and *communication*. Tidyverse packages was built under a same philosophy, named tidy data \[REF\]. A data set must follow three rules to be considered a tidy data: **(1)** Each *column* is a distinguish variable, **(2)** each *row* is a different observation, and **(3)** each *cell* is a single value \[REF\].
+
+With the growing expansion of the `tidyverse` and the interest in machine learning tools, in 2019 a set of packages inspired by the tidy data philosophy called `tidymodels` was released [@giorgi2022]\[REF\].
+
 ## Data sets
+
+UV:
+
+FTIR:
+
+Raman: `{hyperSpec}` package `chodro` data is a special S4 R object named *`hyperSpec`* class which contains 850 Raman spectra with x (`chondro$x`) and y (`chondro$y`) spatial coordinates (from a grid conformation of 25 x 35), in addition the `chondor$spc` has 300 data points measured from 600 cm^-1^ to 1800 cm^-1^ for each spectra.
 
 ## Overview of `tidyspec` package
 
 The `tidyspec` package was design to enable the data analysis of spectroscopy data (as IR, Raman, NMR) with the tidydata format. Similar to packages like `{stringr}` [@stringr] and `{forcats}` [@forcats], the tidyspec package contains a naming pattern at the beginning of its function name, in this case `spec_`. Since spectra are values in function of *wavelength*, *wavenumber*, *frequency* or *energy* values, a `wn_col` argument has been defined in order to map these values to the input data. ESCREVER SOBRE OS PACOTES QUE COMPOE AS FUNÇÕES
+
+The functions in the `tidyspec` package were created by wrapping functions of `tidyverse` packages in order to simplify the code syntax. Package performance is guaranteed by using the `recipes` package [@recipes], which provides structure for data processing.
 
 The functions were designed to solve 6 different problems in spectroscopy:
 
@@ -126,14 +138,14 @@ library(modeldatatoo)
 library(viridis)
 library(baseline)
 
-UV <- data_chimiometrie_2019()
+#UV <- data_chimiometrie_2019()
 ```
 
 #### FTIR
 
 #### Raman
 
-`{hyperSpec}` package `chodro` data is a special S4 R object named *`hyperSpec`* class which contains 850 Raman spectra with x (`chondro$x`) and y (`chondro$y`) spatial coordinates (from a grid conformation of 25 x 35), in addition the `chondor$spc` has 300 data points measured from 600 cm^-1^ to 1800 cm^-1^ for each spectra. For the purpose of this work the `chondor$spc` data wasconverted into a tidy data format with the first column the wavenumbers and the following columns each spectra. This data was called `Raman_tidy`.
+For the purpose of this work the `chondor$spc` data was converted into a tidy data format with the first column the wavenumbers and the following columns each spectra. This data was called `Raman_tidy`.
 
 ```{r,message=FALSE,warning=FALSE}
 library(hyperSpec)
